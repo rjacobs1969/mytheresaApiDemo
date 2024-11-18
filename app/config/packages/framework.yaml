@@ -1,0 +1,3 @@
+framework:
+    # by convention the env var names are always uppercase
+    secret: '%env(APP_SECRET)%'
