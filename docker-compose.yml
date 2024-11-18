@@ -1,0 +1,31 @@
+#docker-compose.yml
+services:
+    php:
+        build: ./docker/php
+        volumes:
+            - ./app:/var/www/symfony
+        networks:
+            - standardApiExample
+
+    nginx:
+        build: ./docker/nginx
+        ports:
+            - "8081:80"
+        volumes:
+            - ./app:/var/www/symfony
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - standardApiExample
+
+    db:
+        image: mysql:8.0.33
+        environment:
+            MYSQL_ROOT_PASSWORD: SV9kZXNlcnZlX3RoZV9qb2I
+            MYSQL_DATABASE: standardApiExampleDB
+            MYSQL_USER: demoUser
+            MYSQL_PASSWORD: demo
+        networks:
+            - standardApiExample
+
+networks:
+    standardApiExample:
