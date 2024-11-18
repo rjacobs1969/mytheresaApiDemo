@@ -8,3 +8,8 @@ app_health:
     path: /api/health
     methods: [GET]
     defaults: { _controller: App\Controller\HealthCheck\HealthController::getStatus}
+
+app_products:
+    path: /api/products
+    methods: [GET]
+    defaults: { _controller: App\Controller\Products\ProductsController::getStatus}

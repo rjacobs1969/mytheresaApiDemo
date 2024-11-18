@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\HealthCheck;
+namespace App\Controller\Products;
 
 // use Atrapalo\Accommodation\Hcd\Application\Health\CheckHealthStatus;
 use OpenApi\Annotations as OA;
@@ -12,15 +12,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
-class HealthController extends AbstractController
+class ProductsController extends AbstractController
 {
     /**
      * @param Request $request
      * @return JsonResponse
      *
-     * @OA\Response(response=200, description="Returns the health status of the service")
+     * @OA\Response(response=200, description="OK")
      * @OA\Response(response=500, description="Something wend wrong")
-     * @OA\Tag(name="Health check")
+     * @OA\Tag(name="Products")
      */
     public function getStatus(Request $request): JsonResponse
     {
