@@ -1,4 +1,4 @@
-# Empty project environment
+# Mytheresa demo project environment
 PHP8, Symfony, Nginx, MYSQL, Nelmio
 
 This boiler plate for a REST API endpoint.
@@ -7,7 +7,7 @@ This boiler plate for a REST API endpoint.
 
 1. Clone repository
 ####
-        git clone git@github.com:rjacobs1969/BoilerPlate.git
+        git clone git@github.com:rjacobs1969/mytheresaApiDemo.git
 
 2. Build the environment
 
