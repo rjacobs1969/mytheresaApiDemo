@@ -8,13 +8,18 @@ This boiler plate for a REST API endpoint.
 1. Clone repository
 ####
         git clone git@github.com:rjacobs1969/mytheresaApiDemo.git
+        
+2. Cd into the project folder
 
-2. Build the environment
+###
+        cd mytheresaApiDemo
+
+3. Build the environment
 
 ####
         make build
 
-3. Enjoy the API on your local host on port 8081
+4. Enjoy the API on your local host on port 8081
 
 ####
         http://localhost:8081
