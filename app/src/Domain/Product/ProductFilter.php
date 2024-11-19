@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Persistence\Repository;
+namespace App\Domain\Product;
 
 final class ProductFilter
 {

@@ -7,6 +7,9 @@ namespace App\Persistence\Repository;
 use App\Domain\Money\Money;
 use App\Domain\Product\Product;
 use App\Domain\Product\ProductCategory;
+use App\Domain\Product\ProductFilter;
+use App\Domain\Product\ProductFilterType;
+use App\Domain\Product\ProductFilterCollection;
 use App\Domain\Product\ProductCollection;
 use App\Domain\Product\ProductRepositoryInterface;
 use App\Persistence\Adapter\ProductAdapter;
@@ -30,7 +33,7 @@ final class ProductRepository implements ProductRepositoryInterface
         $this->adapter = $productAdapter;
     }
 
-    public function find(array $filters = []): ProductCollection
+    public function find(ProductFilterCollection $filters): ProductCollection
     {
         $queryBuilder = $this->connection->createQueryBuilder();
         $queryBuilder
@@ -43,9 +46,9 @@ final class ProductRepository implements ProductRepositoryInterface
             ->from(self::DATABASE_TABLE, 'p')
             ->setMaxResults(TablesMySQL::MAX_RESULTS);
 
-        if (!empty($filters)) {
+        if ($filters->hasFilters()) {
             $queryBuilder->where('1 = 1');
-            foreach ($filters as $filter) {
+            foreach ($filters->filters() as $filter) {
                 $this->addFilter($queryBuilder, $filter);
             }
         }
