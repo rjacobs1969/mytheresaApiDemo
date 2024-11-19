@@ -40,14 +40,14 @@ class ProductsController extends AbstractController
     public function getProducts(Request $request, ProductCatalog $productCatalog): JsonResponse
     {
         try {
-            $catalogResponse = $productCatalog->listProductCatalog(
+            $response = $productCatalog->listProductCatalog(
                 $this->getFilters($request)
             );
-            print_r($catalogResponse);
+            print_r($response);
             die('kkl');
             //return new JsonResponse($checkHealthStatus->execute());
             return new JsonResponse(
-                $catalogResponse,
+                $response,
                 Response::HTTP_OK
             );
         } catch (\InvalidArgumentException $e) {

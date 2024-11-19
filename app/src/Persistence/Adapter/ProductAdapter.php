@@ -20,7 +20,7 @@ final class ProductAdapter
             $raw['sku'],
             $raw['name'],
             new ProductCategory($raw['category']),
-            new Money($raw['price'], new Currency(self::DEFAULT_CURRENCY))
+            new Money((int) $raw['price'], new Currency(self::DEFAULT_CURRENCY))
         );
     }
 
