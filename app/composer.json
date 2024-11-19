@@ -8,6 +8,8 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^2.0",
+        "doctrine/doctrine-bundle": "*",
+        "doctrine/orm": "^3.3",
         "nelmio/api-doc-bundle": "^4.7",
         "symfony/asset": "6.3.*",
         "symfony/console": "6.3.*",
