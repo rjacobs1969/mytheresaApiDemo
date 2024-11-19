@@ -19,6 +19,7 @@ class ProductsController extends AbstractController
      * @return JsonResponse
      *
      * @OA\Response(response=200, description="OK")
+     * @OA\Response(response=400, description="Bad request, some parameter are wrong")
      * @OA\Response(response=500, description="Something wend wrong")
      * @OA\Tag(name="Products")
      * @OA\Parameter(
@@ -39,18 +40,40 @@ class ProductsController extends AbstractController
     public function getProducts(Request $request, ProductCatalog $productCatalog): JsonResponse
     {
         try {
-            $catalog = $productCatalog->findAllProducts();
-            print_r($catalog);
+            $catalogResponse = $productCatalog->listProductCatalog(
+                $this->getFilters($request)
+            );
+            print_r($catalogResponse);
+            die('kkl');
             //return new JsonResponse($checkHealthStatus->execute());
             return new JsonResponse(
-                'We are up and running!',
+                $catalogResponse,
                 Response::HTTP_OK
+            );
+        } catch (\InvalidArgumentException $e) {
+            return new JsonResponse(
+                $e->getMessage(),
+                Response::HTTP_BAD_REQUEST
             );
         } catch (Throwable $e) {
             return new JsonResponse(
-                'Sorry, we had some problems '.$e->getMessage(),
+                'Sorry, we had some problems ',
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
+    }
+
+    private function getFilters(Request $request): array
+    {
+        $filters = [];
+        if ($request->query->has('category')) {
+            $filters['category'] = $request->query->get('category');
+        }
+
+        if ($request->query->has('priceLessThan')) {
+            $filters['priceLessThan'] = $request->query->get('priceLessThan');
+        }
+
+        return $filters;
     }
 }
