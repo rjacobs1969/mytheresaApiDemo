@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Products;
 
 use App\Application\Catalog\ProductCatalog;
+use App\UserInterface\Adapter\ProductListRequestAdapter;
 use OpenApi\Annotations as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -37,15 +38,16 @@ class ProductsController extends AbstractController
      *   description="Filter by price (optional)",
      * )
      */
-    public function getProducts(Request $request, ProductCatalog $productCatalog): JsonResponse
+    public function getProducts(
+        Request $request,
+        ProductCatalog $productCatalog,
+        ProductListRequestAdapter $requestAdapter
+        ): JsonResponse
     {
         try {
-            $response = $productCatalog->listProductCatalog(
-                $this->getFilters($request)
+            $response = $productCatalog->getProductCatalogWithBestPromotionsApplied(
+                $requestAdapter->createProductListFilterFromRequest($request)
             );
-            print_r($response);
-            die('kkl');
-            //return new JsonResponse($checkHealthStatus->execute());
             return new JsonResponse(
                 $response,
                 Response::HTTP_OK
@@ -56,14 +58,15 @@ class ProductsController extends AbstractController
                 Response::HTTP_BAD_REQUEST
             );
         } catch (Throwable $e) {
+            print_r($e); die();
             return new JsonResponse(
-                'Sorry, we had some problems ',
+                'Sorry, we had some problems. Please try again later.',
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
     }
 
-    private function getFilters(Request $request): array
+    /*private function getFilters(Request $request): array
     {
         $filters = [];
         if ($request->query->has('category')) {
@@ -75,5 +78,5 @@ class ProductsController extends AbstractController
         }
 
         return $filters;
-    }
+    }*/
 }

@@ -12,22 +12,23 @@ final class DiscountAdapter
 {
     public function convertFromDatabaseValues(array $raw) : Discount
     {
-        switch ($raw['type']) {
-            case 'sku':
-                $discountType = DiscountType::SKU;
-                break;
-            case 'category':
-                $discountType = DiscountType::CATEGORY;
-                break;
-            default:
-                throw new \InvalidArgumentException('Invalid discount type');
+        if ($raw['sku'] !== '') {
+            return new Discount(
+                DiscountType::SKU,
+                $raw['sku'],
+                (int) $raw['discount_percent']
+            );
         }
 
-        return new Discount(
-            $discountType,
-            $raw['type_value'],
-            (int) $raw['discount_percent']
-        );
+        if ($raw['category'] !== '') {
+            return new Discount(
+                DiscountType::CATEGORY,
+                $raw['category'],
+                (int) $raw['discount_percent']
+            );
+        }
+
+        throw new \InvalidArgumentException('Invalid discount type');
     }
 
     public function toCollection(array $raws) : DiscountCollection

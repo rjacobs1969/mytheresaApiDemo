@@ -13,6 +13,11 @@ CREATE TABLE products
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
-
-
-
+CREATE TABLE discounts
+(
+    `sku`               CHAR(16) NOT NULL default '',
+    `category`          VARCHAR(128) NOT NULL default '',
+    `discount_percent`  INT NOT NULL DEFAULT '0' ,
+    PRIMARY KEY (`sku`, `category`)
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;

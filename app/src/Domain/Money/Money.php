@@ -24,4 +24,27 @@ class Money
     {
         return $this->currency;
     }
+
+    public function add(Money $money): Money
+    {
+        if (!$this->currency->equals($money->currency())) {
+            throw new \InvalidArgumentException('Currencies must be the same');
+        }
+
+        return new Money($this->amount + $money->amount(), $this->currency);
+    }
+
+    public function subtract(Money $money): Money
+    {
+        if (!$this->currency->equals($money->currency())) {
+            throw new \InvalidArgumentException('Currencies must be the same');
+        }
+
+        return new Money($this->amount - $money->amount(), $this->currency);
+    }
+
+    public function multiply(float $multiplier): Money
+    {
+        return new Money((int) ($this->amount * $multiplier), $this->currency);
+    }
 }

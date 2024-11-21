@@ -32,6 +32,10 @@ shell:
 build:
 	docker-compose up -d --build  && docker-compose exec -u root php bash -c 'composer install -n'
 
+## initdb:		load initial data to the db
+initdb:
+	docker-compose up -d --force-recreate --renew-anon-volumes mysql
+
 ## pull:                 Download new docker image
 pull:
 	docker-compose pull

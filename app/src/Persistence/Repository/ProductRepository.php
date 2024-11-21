@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Persistence\Repository;
 
-use App\Domain\Money\Money;
 use App\Domain\Product\Product;
-use App\Domain\Product\ProductCategory;
 use App\Domain\Product\ProductFilter;
 use App\Domain\Product\ProductFilterType;
 use App\Domain\Product\ProductFilterCollection;
@@ -15,7 +13,6 @@ use App\Domain\Product\ProductRepositoryInterface;
 use App\Persistence\Adapter\ProductAdapter;
 use App\Persistence\TablesMySQL;
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\ParameterType;
 use Doctrine\DBAL\Query\QueryBuilder;
 use InvalidArgumentException;
@@ -23,6 +20,7 @@ use InvalidArgumentException;
 final class ProductRepository implements ProductRepositoryInterface
 {
     private const DATABASE_TABLE = TablesMySQL::PRODUCTS;
+    private const MAX_RESULTS = TablesMySQL::MAX_RESULTS;
 
     private Connection $connection;
     private ProductAdapter $adapter;
@@ -44,7 +42,7 @@ final class ProductRepository implements ProductRepositoryInterface
                 'p.price'
             )
             ->from(self::DATABASE_TABLE, 'p')
-            ->setMaxResults(TablesMySQL::MAX_RESULTS);
+            ->setMaxResults(self::MAX_RESULTS);
 
         if ($filters->hasFilters()) {
             $queryBuilder->where('1 = 1');

@@ -34,3 +34,20 @@ INSERT INTO `catalog`.`products`
         "sneakers",
         59000
     );
+
+    INSERT INTO `catalog`.`discounts`
+    (
+        `sku`,
+        `category`,
+        `discount_percent`
+    )
+    VALUES
+    (
+        "",
+        "boots",
+        30
+    ),(
+        "000003",
+        "",
+        15
+    );

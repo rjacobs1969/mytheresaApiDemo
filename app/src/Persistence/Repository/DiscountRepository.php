@@ -29,53 +29,20 @@ final class DiscountRepository implements DiscountRepositoryInterface
         $this->adapter = $discountAdapter;
     }
 
-    public function find(ProductFilterCollection $filters): DiscountCollection
+    public function find(): DiscountCollection
     {
         $queryBuilder = $this->connection->createQueryBuilder();
         $queryBuilder
             ->select(
                 'p.sku',
-                'p.name',
                 'p.category',
-                'p.price'
+                'p.discount_percent'
             )
             ->from(self::DATABASE_TABLE, 'p');
 
-        if ($filters->hasFilters()) {
-            $queryBuilder->where('1 = 2');
-            foreach ($filters->filters() as $filter) {
-                $this->addFilter($queryBuilder, $filter);
-            }
-        }
         $stmt = $queryBuilder->executeQuery();
         $discounts = $stmt->fetchAllAssociative();
 
         return $this->adapter->toCollection($discounts);
-    }
-
-    private function addFilter(QueryBuilder $queryBuilder, ProductFilter $filter): void
-    {
-        switch ($filter->type()) {
-            case ProductFilterType::CATEGORY_EQUALS:
-                $this->addCategoryFilter($queryBuilder, $filter->value());
-                break;
-            case ProductFilterType::SKU_EQUALS:
-                $this->addSkuFilter($queryBuilder, $filter->value());
-                break;
-            default:
-                throw new InvalidArgumentException('Invalid filter type');
-        }
-    }
-
-    private function addCategoryFilter(QueryBuilder $queryBuilder, string $category): void
-    {
-        $queryBuilder->orWhere('p.category = :category')
-            ->setParameter('category', $category, ParameterType::STRING);
-    }
-
-    private function addSkuFilter(QueryBuilder $queryBuilder, string $sku): void
-    {
-        $queryBuilder->orWhere('p.sku :sku')
-            ->setParameter('sku', $sku, ParameterType::STRING);
     }
 }
