@@ -19,7 +19,7 @@ A REST API endpoint.
 ####
         make build
 
-4. Enjoy the API on your local host on port 8081, either using the Nelmio Interface using a browser
+4. Enjoy the API on your local host on port 8081, either using the Nelmio Interface (use the "try it out" button!) using a browser
 or directly sending requests with your favorite tool (postman, curl, wget)
 
 ####
