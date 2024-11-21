@@ -46,4 +46,4 @@ logs:
 
 ## unit:                 Run unit tests
 unit:
-	make up && docker-compose exec php bash -c './vendor/phpunit/phpunit/phpunit -c /var/www/phpunit.xml.dist'
+	make up && docker-compose exec php bash -c './vendor/phpunit/phpunit/phpunit -c ./phpunit.xml.dist'
