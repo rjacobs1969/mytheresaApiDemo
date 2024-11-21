@@ -7,8 +7,6 @@ namespace App\UserInterface\Transformer;
 use App\Domain\Product\Product;
 use App\Domain\Product\ProductCollection;
 
-use function PHPUnit\Framework\isNull;
-
 class ProductCollectionTransformer
 {
     public function transform(ProductCollection $products): array
@@ -26,13 +24,17 @@ class ProductCollectionTransformer
             'sku'       => $product->sku(),
             'name'      => $product->name(),
             'category'  => $product->category()->category(),
-            'price'     => [
-                'original' => $product->price()->amount(),
-                'final'     => $product->discountedPrice()->amount(),
-                'discount_percentage'  => $product->discount(), //isNull($product->discount()) ? null: $product->discount()."%",
-                'currency'  => $product->price()->currency()->isoCode(),
+            'price'     => $this->transformPrice($product),
+        ];
+    }
 
-            ],
+    private function transformPrice(Product $product): array
+    {
+        return [
+            'original'              => $product->price()->amount(),
+            'final'                 => $product->discountedPrice()->amount(),
+            'discount_percentage'   => empty($product->discount()) ? null: $product->discount()."%",
+            'currency'              => $product->price()->currency()->isoCode(),
         ];
     }
 }

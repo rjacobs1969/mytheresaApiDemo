@@ -58,25 +58,10 @@ class ProductsController extends AbstractController
                 Response::HTTP_BAD_REQUEST
             );
         } catch (Throwable $e) {
-            print_r($e); die();
             return new JsonResponse(
                 'Sorry, we had some problems. Please try again later.',
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
     }
-
-    /*private function getFilters(Request $request): array
-    {
-        $filters = [];
-        if ($request->query->has('category')) {
-            $filters['category'] = $request->query->get('category');
-        }
-
-        if ($request->query->has('priceLessThan')) {
-            $filters['priceLessThan'] = $request->query->get('priceLessThan');
-        }
-
-        return $filters;
-    }*/
 }

@@ -30,7 +30,6 @@ class ProductCatalog
 
     public function getProductCatalogWithBestPromotionsApplied(ProductFilterCollection $filters) : array
     {
-        //$this->createProductFilterCollection($filters)
         $productCollection = $this->productRepository->find($filters);
         $promotionCollection = $this->discountRepository->find();
 
@@ -47,27 +46,5 @@ class ProductCatalog
                 $promotions->discountByCategory($product->category()->category())
             ));
         }
-    }
-
-    private function createProductFilterCollection(array $filters): ProductFilterCollection
-    {
-        $productFilterCollection = new ProductFilterCollection();
-
-        foreach ($filters as $filter => $value) {
-            switch ($filter) {
-                case 'category':
-                    $productFilterCollection->add(
-                        new ProductFilter(ProductFilterType::CATEGORY_EQUALS, $value)
-                    );
-                    break;
-                case 'priceLessThan':
-                    $productFilterCollection->add(
-                        new ProductFilter(ProductFilterType::PRICE_LESS_THAN_OR_EQUAL_TO, $value)
-                    );
-                    break;
-            }
-        }
-
-        return $productFilterCollection;
     }
 }
