@@ -17,7 +17,7 @@ use Doctrine\DBAL\ParameterType;
 use Doctrine\DBAL\Query\QueryBuilder;
 use InvalidArgumentException;
 
-final class ProductRepository implements ProductRepositoryInterface
+class ProductRepository implements ProductRepositoryInterface
 {
     private const DATABASE_TABLE = TablesMySQL::PRODUCTS;
     private const MAX_RESULTS = TablesMySQL::MAX_RESULTS;
@@ -31,7 +31,7 @@ final class ProductRepository implements ProductRepositoryInterface
         $this->adapter = $productAdapter;
     }
 
-    public function find(ProductFilterCollection $filters): ProductCollection
+    public function find(?ProductFilterCollection $filters = null): ProductCollection
     {
         $queryBuilder = $this->connection->createQueryBuilder();
         $queryBuilder
@@ -44,7 +44,7 @@ final class ProductRepository implements ProductRepositoryInterface
             ->from(self::DATABASE_TABLE, 'p')
             ->setMaxResults(self::MAX_RESULTS);
 
-        if ($filters->hasFilters()) {
+        if ($filters && $filters->hasFilters()) {
             $queryBuilder->where('1 = 1');
             foreach ($filters->filters() as $filter) {
                 $this->addFilter($queryBuilder, $filter);

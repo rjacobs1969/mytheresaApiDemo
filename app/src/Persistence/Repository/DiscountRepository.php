@@ -16,7 +16,7 @@ use Doctrine\DBAL\ParameterType;
 use Doctrine\DBAL\Query\QueryBuilder;
 use InvalidArgumentException;
 
-final class DiscountRepository implements DiscountRepositoryInterface
+class DiscountRepository implements DiscountRepositoryInterface
 {
     private const DATABASE_TABLE = TablesMySQL::DISCOUNTS;
 

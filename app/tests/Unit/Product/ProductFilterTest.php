@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit;
+namespace App\Tests\Unit\Product;
 
 use PHPUnit\Framework\TestCase;
 use App\Domain\Product\ProductFilter;
