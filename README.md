@@ -9,7 +9,7 @@ A REST API endpoint.
 - git
 - make
 
-* Note: "make" is optional, if your system does not has support for "make" you can follow the steps outlined in [README_NO_MAKE](README_NO_MAKE.md) *
+Note: "make" is optional, if your system does not has support for "make" you can follow the steps outlined in [README_NO_MAKE](README_NO_MAKE.md)
 
 ### First steps
 
