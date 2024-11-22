@@ -9,7 +9,7 @@ docker
 git
 make
 
-__ Note: "make" is optional, if your system does not has support for "make" you can follow the steps outlined in [a relative link](README_NO_MAKE.md) __
+__ Note: "make" is optional, if your system does not has support for "make" you can follow the steps outlined in [README_NO_MAKE](README_NO_MAKE.md) __
 
 ### First steps
 
