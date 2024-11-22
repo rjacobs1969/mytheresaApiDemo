@@ -1,0 +1,15 @@
+# config/packages/nelmio_api_doc.yaml
+nelmio_api_doc:
+    documentation:
+      info:
+          title: 'mytheresa Promotions Test'
+          description: 'mytheresa job application test, implementing a simple API to manage promotions'
+          version: '1.0.0'
+    areas:
+      default:
+        disable_default_routes: true
+      health:
+        path_patterns: # an array of regexps (document only routes under /api, except /api/doc)
+            - ^/api
+        host_patterns: # document only routes with a host of the form api.*
+            - ^api\.
