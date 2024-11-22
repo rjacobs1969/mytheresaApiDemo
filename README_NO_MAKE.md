@@ -7,9 +7,8 @@ A REST API endpoint.
 
 docker
 git
-make
 
-__ Note: "make" is optional, if your system does not has support for "make" you can follow the steps outlined in [a relative link](README_NO_MAKE.md) __
+__ Note: if your system has the "make" command available you can follow the steps outlined in [a relative link](README.md) which uses shorter and easier commands lines __
 
 ### First steps
 
@@ -25,7 +24,7 @@ __ Note: "make" is optional, if your system does not has support for "make" you 
 3. Build the environment (this takes a while the first time as docker images are likely need to be pulled)
 
 ####
-        make build
+        docker-compose up -d --build  && docker-compose exec -u root php bash -c 'composer install -n'
 
 4. Enjoy the API on your local host on port 8081, either using the Nelmio Interface (use the "try it out" button!) using a browser
 or directly sending requests with your favorite tool (postman, curl, wget)
@@ -45,12 +44,12 @@ ___
 Start the containers
 
 ###
-        make up
+        docker-compose up -d
 
 Stop the containers
 
 ###
-        make down
+        docker-compose down
 
 ___
 
@@ -59,13 +58,14 @@ ___
 1. To run the tests
 
 ###
-        make unit
+        docker-compose up -d && docker-compose exec php bash -c './vendor/phpunit/phpunit/phpunit -c ./phpunit.xml.dist'
 
 ---
 
 ### More
 
-You can discover more actions available executing
+You can recreate/initialize the database
 
 ###
-        make help
+        docker-compose up -d --force-recreate --renew-anon-volumes mysql
+
