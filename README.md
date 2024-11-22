@@ -5,11 +5,11 @@ A REST API endpoint.
 
 ### prerequisites on target system:
 
-docker
-git
-make
+- docker
+- git
+- make
 
-__ Note: "make" is optional, if your system does not has support for "make" you can follow the steps outlined in [README_NO_MAKE](README_NO_MAKE.md) __
+_ _ Note: "make" is optional, if your system does not has support for "make" you can follow the steps outlined in [README_NO_MAKE](README_NO_MAKE.md) _ _
 
 ### First steps
 

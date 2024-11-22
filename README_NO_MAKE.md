@@ -5,8 +5,8 @@ A REST API endpoint.
 
 ### prerequisites on target system:
 
-docker
-git
+- docker
+- git
 
 __ Note: if your system has the "make" command available you can follow the steps outlined in [README](README.md) which uses shorter and easier commands lines __
 
