@@ -8,7 +8,7 @@ A REST API endpoint.
 - docker
 - git
 
-__ Note: if your system has the "make" command available you can follow the steps outlined in [README](README.md) which uses shorter and easier commands lines __
+* Note: if your system has the "make" command available you can follow the steps outlined in [README](README.md) which uses shorter and easier commands lines *
 
 ### First steps
 
