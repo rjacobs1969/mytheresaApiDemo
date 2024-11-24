@@ -69,3 +69,21 @@ You can discover more actions available executing
 
 ###
         make help
+
+---
+
+### Clarification on design decisions taken:
+
+Given that the job requires experience with PHP and Symfony, it was a natural decision to use these technologies for this assignment. The directory structure and naming conventions reflect the practices agreed upon in my previous company, including:
+
+- Repositories are named with the suffix Repository.
+
+- There is no distinction between value objects and entities.
+
+- The term Usecase is avoided and descriptive function names are favored instead of execute.
+
+- Doctrine Querybuilder is used for database access, without employing the ORM component.
+
+- Unit tests cover business logic but exclude the persistence layer.
+
+I chose MySQL as the database, aligning the data structure with the provided test data. Since it was mentioned that the product count could grow to 20,000  both product selection and result limiting are handled at the query level for performance and memory usage reasons.
