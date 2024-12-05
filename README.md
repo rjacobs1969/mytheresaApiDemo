@@ -27,11 +27,16 @@ Note: "make" is optional, if your system does not has support for "make" you can
 ####
         make build
 
-4. Enjoy the API on your local host on port 8081, either using the Nelmio Interface (use the "try it out" button!) using a browser
-or directly sending requests with your favorite tool (postman, curl, wget)
+4. Enjoy the API on your local host on port 8081, either using the Nelmio Interface (use the "try it out" and "execute" buttons!) using a browser
+
 
 ####
         http://localhost:8081
+
+or you can use it sending requests directly with your favorite tool (postman, curl, wget)
+
+####
+        curl http://localhost:8081/api/products?category=boots
 
 5. For your convience phpmyadmin is available to manipulate the data on port 8080
 
@@ -78,9 +83,11 @@ Given that the job requires experience with PHP and Symfony, it was a natural de
 
 - Repositories are named with the suffix Repository.
 
-- There is no distinction between value objects and entities.
+- There is no distinction (naming and location in the source tree) between value objects and entities.
 
 - The term Usecase is avoided and descriptive function names are favored instead of execute.
+
+- Terms like tryToExecute or ExecuteOrFail are avoided
 
 - Doctrine Querybuilder is used for database access, without employing the ORM component.
 
