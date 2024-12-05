@@ -18,7 +18,7 @@ class CurrencyTest extends TestCase
     public function testCannotCreateCurrencyWithInvalidLengthIsoCode() : void
     {
         $this->expectException(\InvalidArgumentException::class);
-        new Currency('NOTVALID');
+        new Currency('NOT_VALID');
     }
 
     public function testCanCreateCurrencyWithValidIsoCode() : void
