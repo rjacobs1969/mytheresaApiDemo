@@ -5,28 +5,25 @@ declare(strict_types=1);
 namespace App\Persistence\Adapter;
 
 use App\Domain\Discount\Discount;
-use App\Domain\Discount\DiscountType;
 use App\Domain\Discount\DiscountCollection;
+use App\Domain\Discount\DiscountFactory;
 
 final class DiscountAdapter
 {
+    private DiscountFactory $discountFactory;
+
+    public function __construct(DiscountFactory $discountFactory)
+    {
+        $this->discountFactory = $discountFactory;
+    }
+
     public function convertFromDatabaseValues(array $raw) : Discount
     {
-        if ($raw['sku'] !== '') {
-            return new Discount(
-                DiscountType::SKU,
-                $raw['sku'],
-                (int) $raw['discount_percent']
-            );
-        }
-
-        if ($raw['category'] !== '') {
-            return new Discount(
-                DiscountType::CATEGORY,
-                $raw['category'],
-                (int) $raw['discount_percent']
-            );
-        }
+        return $this->discountFactory->createDiscount(
+            $raw['sku'] ?? '',
+            $raw['category'] ?? '',
+            (int) $raw['discount_percent'] ?? 0
+        );
 
         throw new \InvalidArgumentException('Invalid discount type');
     }

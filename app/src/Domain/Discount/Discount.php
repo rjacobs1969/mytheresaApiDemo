@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace App\Domain\Discount;
 
-use App\Domain\Discount\DiscountType;
+use InvalidArgumentException;
 
-class Discount
+abstract class Discount
 {
-    private DiscountType $discountType;
-    private string $typeValue;
-    private int $discountPercent;
+    protected DiscountType $discountType;
+    protected int $discountPercent;
 
-    public function __construct(DiscountType $discountType, string $typeValue, int $discountPercent)
+    abstract public function key(): string;
+
+    protected function __construct(DiscountType $discountType, int $discountPercent)
     {
+        $this->checkDiscountPercent($discountPercent);
+
         $this->discountType = $discountType;
-        $this->typeValue = $typeValue;
         $this->discountPercent = $discountPercent;
     }
 
@@ -24,13 +26,22 @@ class Discount
         return $this->discountType;
     }
 
-    public function typeValue(): string
-    {
-        return $this->typeValue;
-    }
-
     public function discountPercent(): int
     {
         return $this->discountPercent;
+    }
+
+    protected function checkDiscountPercent(int $discountPercent): void
+    {
+        if ($discountPercent < 0 || $discountPercent > 100) {
+            throw new InvalidArgumentException('Discount percent must be between 0 and 100');
+        }
+    }
+
+    protected function notEmpty(string $value): void
+    {
+        if (empty($value)) {
+            throw new InvalidArgumentException('Value cannot be empty');
+        }
     }
 }

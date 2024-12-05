@@ -14,8 +14,8 @@ use App\Domain\Product\Product;
 use App\Domain\Product\ProductCategory;
 use App\Domain\Money\Money;
 use App\Domain\Money\Currency;
-use App\Domain\Discount\Discount;
-use App\Domain\Discount\DiscountType;
+use App\Domain\Discount\DiscountByCategory;
+use App\Domain\Discount\DiscountBySku;
 use App\Domain\Discount\DiscountCollection;
 use App\Domain\Product\ProductFilterCollection;
 use App\Domain\Product\ProductFilter;
@@ -114,9 +114,9 @@ class ProductCatalogTest extends TestCase
     private function createDiscountCollectionMockData() : DiscountCollection
     {
         $collection = new DiscountCollection();
-        $collection->add(new Discount(DiscountType::SKU, '129', 10));           // will not be applied as it is less than 20%
-        $collection->add(new Discount(DiscountType::CATEGORY, 'shoes', 20));    // will be applied to all shoes
-        $collection->add(new Discount(DiscountType::SKU, '130', 25));           // will be applied to item 4
+        $collection->add(new DiscountBySku('129', 10));           // will not be applied as it is less than 20% (discount of category "shoes")
+        $collection->add(new DiscountByCategory('shoes', 20));    // will be applied to all shoes
+        $collection->add(new DiscountBySku('130', 25));           // will be applied to item 4
 
         return $collection;
     }
