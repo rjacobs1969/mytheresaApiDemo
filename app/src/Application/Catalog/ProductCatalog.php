@@ -6,8 +6,6 @@ namespace App\Application\Catalog;
 
 use App\Domain\Product\ProductCollection;
 use App\Domain\Product\ProductFilterCollection;
-use App\Domain\Product\ProductFilter;
-use App\Domain\Product\ProductFilterType;
 use App\Domain\Discount\DiscountCollection;
 use App\Persistence\Repository\DiscountRepository;
 use App\Persistence\Repository\ProductRepository;
@@ -41,10 +39,12 @@ class ProductCatalog
     private function applyPromotions(ProductCollection $products, DiscountCollection $promotions): void
     {
         foreach ($products as $product) {
-            $product->setDiscount(max(
-                $promotions->discountBySku($product->sku()),
-                $promotions->discountByCategory($product->category()->category())
-            ));
+            $product->setDiscount(
+                max(
+                    $promotions->discountBySku($product->sku()),
+                    $promotions->discountByCategory($product->category()->category())
+                )
+            );
         }
     }
 }
