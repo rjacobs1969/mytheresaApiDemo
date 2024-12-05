@@ -12,6 +12,8 @@ use App\Domain\Product\ProductFilterType;
 use App\Persistence\Adapter\ProductAdapter;
 use App\Persistence\Repository\ProductRepository;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Query\QueryBuilder;
+use Doctrine\DBAL\Result;
 use PHPUnit\Framework\TestCase;
 use InvalidArgumentException;
 
@@ -25,13 +27,37 @@ class ProductRepositoryTest extends TestCase
         $this->assertInstanceOf(ProductCollection::class, $products);
     }
 
-    public function testFindWithFilters() : void
+    public function testIfQueryBuilderAndDoctrineIsCalled() : void
     {
-        $productRepository = $this->createProductRepository();
+        $connection = $this->createMock(Connection::class);
+        $queryBuilder = $this->createMock(QueryBuilder::class);
         $filters = $this->createMock(ProductFilterCollection::class);
-        $products = $productRepository->find($filters);
+        $stmt = $this->createMock(Result::class);
 
+        $connection->expects($this->once())
+            ->method('createQueryBuilder')
+            ->willReturn($queryBuilder);
+        $queryBuilder->expects($this->once())
+            ->method('select')
+            ->willReturnSelf();
+        $queryBuilder->expects($this->once())
+            ->method('from')
+            ->willReturnSelf();
+        $queryBuilder->expects($this->once())
+            ->method('setMaxResults')
+            ->willReturnSelf();
+        $queryBuilder->expects($this->once())
+            ->method('executeQuery')
+            ->willReturn($stmt);
+        $stmt->expects($this->once())
+            ->method('fetchAllAssociative')
+            ->willReturn($this->mockData());
+
+        $productAdapter = new ProductAdapter();
+        $productRepository = new ProductRepository($connection, $productAdapter);
+        $products = $productRepository->find($filters);
         $this->assertInstanceOf(ProductCollection::class, $products);
+        $this->assertCount(2, $products);
     }
 
     public function testFindWithInvalidFilter() : void
@@ -61,6 +87,24 @@ class ProductRepositoryTest extends TestCase
         $productAdapter = new ProductAdapter();
 
         return new ProductRepository($connection, $productAdapter);
+    }
+
+    private function mockData() : array
+    {
+        return [
+            [
+                'sku' => '123',
+                'name' => 'Product 1',
+                'category' => 'Category 1',
+                'price' => 1000
+            ],
+            [
+                'sku' => '456',
+                'name' => 'Product 2',
+                'category' => 'Category 2',
+                'price' => 2000
+            ]
+        ];
     }
 
 }
