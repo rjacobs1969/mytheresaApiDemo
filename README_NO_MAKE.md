@@ -26,11 +26,15 @@ Note: if your system has the "make" command available you can follow the steps o
 ####
         docker-compose up -d --build  && docker-compose exec -u root php bash -c 'composer install -n'
 
-4. Enjoy the API on your local host on port 8081, either using the Nelmio Interface (use the "try it out" button!) using a browser
-or directly sending requests with your favorite tool (postman, curl, wget)
+4. Enjoy the API on your local host on port 8081, either using the Nelmio Interface (use the "try it out" and "execute" buttons!) using a browser
 
 ####
         http://localhost:8081
+
+or you can use it sending requests directly with your favorite tool (postman, curl, wget)
+
+####
+        curl http://localhost:8081/products?category=boots
 
 5. For your convience phpmyadmin is available to manipulate the data on port 8080
 

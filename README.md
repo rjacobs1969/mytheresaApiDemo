@@ -36,7 +36,8 @@ Note: "make" is optional, if your system does not has support for "make" you can
 or you can use it sending requests directly with your favorite tool (postman, curl, wget)
 
 ####
-        curl http://localhost:8081/api/products?category=boots
+        curl http://localhost:8081/products?category=boots
+
 
 5. For your convience phpmyadmin is available to manipulate the data on port 8080
 
