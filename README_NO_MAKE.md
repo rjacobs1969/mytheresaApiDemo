@@ -1,5 +1,8 @@
-# Mytheresa demo project environment
-PHP8, Symfony, Nginx, MYSQL, Nelmio
+# What's this?
+This is my implementation of the Mytheresa promotions assignment, a REST API as outlined in [this document](assignment.md)
+
+# Project environment
+Docker with PHP8, Symfony, Nginx, MYSQL, Nelmio
 
 A REST API endpoint.
 
