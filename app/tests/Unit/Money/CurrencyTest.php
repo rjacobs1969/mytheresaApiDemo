@@ -9,25 +9,25 @@ use App\Domain\Money\Currency;
 
 class CurrencyTest extends TestCase
 {
-    public function testCannotCreateCurrencyWithoutIsoCode() : void
+    public function testCannotCreateCurrencyWithoutIsoCode(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         new Currency('');
     }
 
-    public function testCannotCreateCurrencyWithInvalidLengthIsoCode() : void
+    public function testCannotCreateCurrencyWithInvalidLengthIsoCode(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         new Currency('NOT_VALID');
     }
 
-    public function testCanCreateCurrencyWithValidIsoCode() : void
+    public function testCanCreateCurrencyWithValidIsoCode(): void
     {
         $currency = new Currency('EUR');
         $this->assertEquals('EUR', $currency->isoCode());
     }
 
-    public function testCanCompareCurrencies() : void
+    public function testCanCompareCurrencies(): void
     {
         $currency1 = new Currency('EUR');
         $currency2 = new Currency('EUR');

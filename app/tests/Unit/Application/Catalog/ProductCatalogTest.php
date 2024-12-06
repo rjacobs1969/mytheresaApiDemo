@@ -34,14 +34,14 @@ class ProductCatalogTest extends TestCase
         );
     }
 
-    public function testCanGetProductCatalogWithBestPromotionsApplied() : void
+    public function testCanGetProductCatalogWithBestPromotionsApplied(): void
     {
         $productCatalog = $this->productCatalog->getProductCatalogWithBestPromotionsApplied();
 
         $this->assertIsArray($productCatalog);
     }
 
-    public function testCanGetProductCatalogWithBestPromotionsAppliedWithFilters() : void
+    public function testCanGetProductCatalogWithBestPromotionsAppliedWithFilters(): void
     {
         $productCatalog = $this->productCatalog->getProductCatalogWithBestPromotionsApplied(
             new ProductFilterCollection(
@@ -52,7 +52,7 @@ class ProductCatalogTest extends TestCase
         $this->assertIsArray($productCatalog);
     }
 
-    public function testBestDiscountIsAppliedToProduct() : void
+    public function testBestDiscountIsAppliedToProduct(): void
     {
         $productCatalog = $this->productCatalog->getProductCatalogWithBestPromotionsApplied();
 
@@ -64,7 +64,7 @@ class ProductCatalogTest extends TestCase
         $this->assertEquals(333, $productCatalog[3]['price']['final']);
     }
 
-    public function discountIsNullWhenNoPromotionApplied() : void
+    public function discountIsNullWhenNoPromotionApplied(): void
     {
         $productCatalog = $this->productCatalog->getProductCatalogWithBestPromotionsApplied();
 
@@ -72,7 +72,7 @@ class ProductCatalogTest extends TestCase
         $this->assertNull($productCatalog[3]['price']['discount_percentage']);
     }
 
-    public function testDiscountPercentageHasPercentageSymbol() : void
+    public function testDiscountPercentageHasPercentageSymbol(): void
     {
         $productCatalog = $this->productCatalog->getProductCatalogWithBestPromotionsApplied();
 
@@ -82,7 +82,7 @@ class ProductCatalogTest extends TestCase
         $this->assertEquals('25%', $productCatalog[2]['price']['discount_percentage']);
     }
 
-    private function createProductRepositoryMock() : ProductRepository
+    private function createProductRepositoryMock(): ProductRepository
     {
         $hotelInfoRepository = $this->createMock(ProductRepository::class, 'ProductRepository');
         $hotelInfoRepository->method('find')
@@ -91,7 +91,7 @@ class ProductCatalogTest extends TestCase
         return $hotelInfoRepository;
     }
 
-    private function createDiscountRepositoryMock() : DiscountRepository
+    private function createDiscountRepositoryMock(): DiscountRepository
     {
         $discountRepository = $this->createMock(DiscountRepository::class, 'DiscountRepository');
         $discountRepository->method('find')
@@ -100,7 +100,7 @@ class ProductCatalogTest extends TestCase
         return $discountRepository;
     }
 
-    private function createProductCollectionMockData() : ProductCollection
+    private function createProductCollectionMockData(): ProductCollection
     {
         $collection = new ProductCollection();
         $collection->add(new Product('128', 'Item 1', new ProductCategory('shoes'), new Money(100, new Currency('USD'))));
@@ -111,7 +111,7 @@ class ProductCatalogTest extends TestCase
         return $collection;
     }
 
-    private function createDiscountCollectionMockData() : DiscountCollection
+    private function createDiscountCollectionMockData(): DiscountCollection
     {
         $collection = new DiscountCollection();
         $collection->add(new DiscountBySku('129', 10));           // will not be applied as it is less than 20% (discount of category "shoes")

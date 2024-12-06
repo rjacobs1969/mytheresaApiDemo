@@ -11,14 +11,14 @@ use App\Domain\Discount\DiscountCollection;
 
 class DiscountCollectionTest extends TestCase
 {
-    public function testCanCreateDiscountCollection() : void
+    public function testCanCreateDiscountCollection(): void
     {
         $discount = new DiscountBySku('123', 10);
         $discountCollection = new DiscountCollection([$discount]);
         $this->assertEquals([$discount], $discountCollection->discounts());
     }
 
-    public function testCanAddDiscountToCollection() : void
+    public function testCanAddDiscountToCollection(): void
     {
         $discount = new DiscountBySku('123', 10);
         $discountCollection = new DiscountCollection([$discount]);
@@ -27,21 +27,21 @@ class DiscountCollectionTest extends TestCase
         $this->assertEquals([$discount, $discount2], $discountCollection->discounts());
     }
 
-    public function testCanGetDiscountBySku() : void
+    public function testCanGetDiscountBySku(): void
     {
         $discount = new DiscountBySku('123', 10);
         $discountCollection = new DiscountCollection([$discount]);
         $this->assertEquals($discount->discountPercent(), $discountCollection->discountBySku('123'));
     }
 
-    public function testCanGetDiscountByCategory() : void
+    public function testCanGetDiscountByCategory(): void
     {
         $discount = new DiscountByCategory('Category Name', 10);
         $discountCollection = new DiscountCollection([$discount]);
         $this->assertEquals($discount->discountPercent(), $discountCollection->discountByCategory('Category Name'));
     }
 
-    public function testDiscountIsNullIfNotInCollection() : void
+    public function testDiscountIsNullIfNotInCollection(): void
     {
         $discount = new DiscountBySku('123', 10);
         $discount2 = new DiscountByCategory('Category Name', 20);

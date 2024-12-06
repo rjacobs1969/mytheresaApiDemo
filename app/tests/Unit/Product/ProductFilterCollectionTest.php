@@ -11,7 +11,7 @@ use App\Domain\Product\ProductFilterCollection;
 
 class ProductFilterCollectionTest extends TestCase
 {
-    public function testCanAddFilterToCollection() : void
+    public function testCanAddFilterToCollection(): void
     {
         $filter = new ProductFilter(ProductFilterType::SKU_EQUALS, '123');
         $collection = new ProductFilterCollection();
@@ -25,7 +25,7 @@ class ProductFilterCollectionTest extends TestCase
         $this->assertCount(2, $collection);
     }
 
-    public function testCanGetFiltersFromCollection() : void
+    public function testCanGetFiltersFromCollection(): void
     {
         $filter = new ProductFilter(ProductFilterType::SKU_EQUALS, '123');
         $collection = new ProductFilterCollection($filter);
@@ -33,7 +33,7 @@ class ProductFilterCollectionTest extends TestCase
         $this->assertEquals([$filter], $collection->filters());
     }
 
-    public function testCanIterateOverFilters() : void
+    public function testCanIterateOverFilters(): void
     {
         $filter = new ProductFilter(ProductFilterType::SKU_EQUALS, '123');
         $collection = new ProductFilterCollection($filter, $filter, $filter);
@@ -46,7 +46,7 @@ class ProductFilterCollectionTest extends TestCase
         $this->assertEquals([$filter, $filter, $filter], $filters);
     }
 
-    public function testCanCheckIfCollectionHasFilters() : void
+    public function testCanCheckIfCollectionHasFilters(): void
     {
         $collection = new ProductFilterCollection();
         $this->assertFalse($collection->hasFilters());

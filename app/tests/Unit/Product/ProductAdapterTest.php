@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class ProductAdapterTest extends TestCase
 {
-    public function testRawDatabaseDataIsConvertedToProduct() : void
+    public function testRawDatabaseDataIsConvertedToProduct(): void
     {
         $productAdapter = new ProductAdapter();
         $rawData = [
@@ -28,7 +28,7 @@ class ProductAdapterTest extends TestCase
         $this->assertEquals(10.00, $product->price()->amount());
     }
 
-    public function testRawDatabaseDataIsConvertedToProductCollection() : void
+    public function testRawDatabaseDataIsConvertedToProductCollection(): void
     {
         $productAdapter = new ProductAdapter();
         $rawData = [
@@ -52,7 +52,7 @@ class ProductAdapterTest extends TestCase
         $this->assertCount(2, $products);
     }
 
-    public function testProductIsConvertedToDatabaseValues() : void
+    public function testProductIsConvertedToDatabaseValues(): void
     {
         $productAdapter = new ProductAdapter();
         $productData = [
@@ -68,7 +68,7 @@ class ProductAdapterTest extends TestCase
         $this->assertEquals($productData, $databaseValues);
     }
 
-    public function testProductIsConvertedToDatabaseKey() : void
+    public function testProductIsConvertedToDatabaseKey(): void
     {
         $productAdapter = new ProductAdapter();
         $productData = [

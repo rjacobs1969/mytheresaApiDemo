@@ -20,17 +20,17 @@ class ProductFilterCollection implements IteratorAggregate, Countable
         $this->filters = $filters;
     }
 
-    public function filters() : array
+    public function filters(): array
     {
         return $this->filters;
     }
 
-    public function add(ProductFilter $filter) : void
+    public function add(ProductFilter $filter): void
     {
         $this->filters[] = $filter;
     }
 
-    public function hasFilters() : bool
+    public function hasFilters(): bool
     {
         return $this->count() > 0;
     }

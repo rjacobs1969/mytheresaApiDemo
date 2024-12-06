@@ -10,7 +10,7 @@ use App\Domain\Product\ProductFilterType;
 
 class ProductFilterTest extends TestCase
 {
-    public function testCanCreateFilterWithValidFilterType() : void
+    public function testCanCreateFilterWithValidFilterType(): void
     {
         $skuFilter = new ProductFilter(ProductFilterType::SKU_EQUALS, '123');
         $this->assertEquals(ProductFilterType::SKU_EQUALS, $skuFilter->type());

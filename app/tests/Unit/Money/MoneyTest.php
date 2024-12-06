@@ -10,7 +10,7 @@ use App\Domain\Money\Currency;
 
 class MoneyTest extends TestCase
 {
-    public function testCanAddMoney() : void
+    public function testCanAddMoney(): void
     {
         $money1 = new Money(100, new Currency('EUR'));
         $money2 = new Money(200, new Currency('EUR'));
@@ -21,7 +21,7 @@ class MoneyTest extends TestCase
         $this->assertEquals('EUR', $result->currency()->isoCode());
     }
 
-    public function testCanSubtractMoney() : void
+    public function testCanSubtractMoney(): void
     {
         $money1 = new Money(200, new Currency('EUR'));
         $money2 = new Money(100, new Currency('EUR'));
@@ -32,7 +32,7 @@ class MoneyTest extends TestCase
         $this->assertEquals('EUR', $result->currency()->isoCode());
     }
 
-    public function testCannotAddMoneyWithDifferentCurrencies() : void
+    public function testCannotAddMoneyWithDifferentCurrencies(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -42,7 +42,7 @@ class MoneyTest extends TestCase
         $money1->add($money2);
     }
 
-    public function testCannotSubtractMoneyWithDifferentCurrencies() : void
+    public function testCannotSubtractMoneyWithDifferentCurrencies(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -52,7 +52,7 @@ class MoneyTest extends TestCase
         $money1->subtract($money2);
     }
 
-    public function testCanMultiplyMoney() : void
+    public function testCanMultiplyMoney(): void
     {
         $money = new Money(100, new Currency('EUR'));
 

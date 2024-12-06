@@ -9,13 +9,13 @@ use App\Domain\Product\ProductCategory;
 
 class ProductCategoryTest extends TestCase
 {
-    public function testCanCreateProductCategory() : void
+    public function testCanCreateProductCategory(): void
     {
         $category = new ProductCategory('Category Name');
         $this->assertEquals('Category Name', $category->category());
     }
 
-    public function testCannortCreateCategoryWithoutName() : void
+    public function testCannortCreateCategoryWithoutName(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         new ProductCategory('');

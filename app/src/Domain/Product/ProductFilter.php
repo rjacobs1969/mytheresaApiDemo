@@ -17,12 +17,12 @@ final class ProductFilter
         $this->value = $value;
     }
 
-    public function type() : ProductFilterType
+    public function type(): ProductFilterType
     {
         return $this->type;
     }
 
-    public function value() : string
+    public function value(): string
     {
         return $this->value;
     }

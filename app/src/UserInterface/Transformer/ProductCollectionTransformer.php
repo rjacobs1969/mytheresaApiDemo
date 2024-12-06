@@ -33,7 +33,7 @@ class ProductCollectionTransformer
         return [
             'original'              => $product->price()->amount(),
             'final'                 => $product->discountedPrice()->amount(),
-            'discount_percentage'   => empty($product->discount()) ? null: $product->discount()."%",
+            'discount_percentage'   => empty($product->discount()) ? null : $product->discount()."%",
             'currency'              => $product->price()->currency()->isoCode(),
         ];
     }

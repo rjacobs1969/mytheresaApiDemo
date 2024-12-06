@@ -13,7 +13,7 @@ use App\Domain\Money\Currency;
 
 class ProductCollectionTest extends TestCase
 {
-    public function testCanAddProductToCollection() : void
+    public function testCanAddProductToCollection(): void
     {
         $product = $this->createProduct();
         $collection = new ProductCollection();
@@ -22,7 +22,7 @@ class ProductCollectionTest extends TestCase
         $this->assertCount(1, $collection);
     }
 
-    public function testCannotAddSameProductTwice() : void
+    public function testCannotAddSameProductTwice(): void
     {
         $product = $this->createProduct();
         $collection = new ProductCollection();
@@ -32,7 +32,7 @@ class ProductCollectionTest extends TestCase
         $collection->add($product);
     }
 
-    public function testCanGetProductsFromCollection() : void
+    public function testCanGetProductsFromCollection(): void
     {
         $product = $this->createProduct();
         $collection = new ProductCollection([$product]);
@@ -40,7 +40,7 @@ class ProductCollectionTest extends TestCase
         $this->assertEquals([$product], $collection->products());
     }
 
-    public function testCanIterateOverProducts() : void
+    public function testCanIterateOverProducts(): void
     {
         $product = $this->createProduct();
         $collection = new ProductCollection([$product]);
@@ -53,7 +53,7 @@ class ProductCollectionTest extends TestCase
         $this->assertEquals([$product], $products);
     }
 
-    private function createProduct() : Product
+    private function createProduct(): Product
     {
         return new Product(
             '123',

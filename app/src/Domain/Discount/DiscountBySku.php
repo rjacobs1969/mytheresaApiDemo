@@ -6,7 +6,7 @@ namespace App\Domain\Discount;
 
 class DiscountBySku extends Discount
 {
-    const DISCOUNT_TYPE = DiscountType::SKU;
+    private const DISCOUNT_TYPE = DiscountType::SKU;
 
     private string $sku;
 

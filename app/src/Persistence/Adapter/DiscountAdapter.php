@@ -17,7 +17,7 @@ final class DiscountAdapter
         $this->discountFactory = $discountFactory;
     }
 
-    public function convertFromDatabaseValues(array $raw) : Discount
+    public function convertFromDatabaseValues(array $raw): Discount
     {
         return $this->discountFactory->createDiscount(
             $raw['sku'] ?? '',
@@ -28,7 +28,7 @@ final class DiscountAdapter
         throw new \InvalidArgumentException('Invalid discount type');
     }
 
-    public function toCollection(array $raws) : DiscountCollection
+    public function toCollection(array $raws): DiscountCollection
     {
         $collection = new DiscountCollection();
         foreach ($raws as $raw) {

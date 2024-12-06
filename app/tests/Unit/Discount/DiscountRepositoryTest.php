@@ -15,7 +15,7 @@ use Doctrine\DBAL\Result;
 
 class DiscountRepositoryTest extends TestCase
 {
-    public function testFind() : void
+    public function testFind(): void
     {
         $productRepository = $this->createDiscountRepositoryMock();
         $products = $productRepository->find();
@@ -23,7 +23,7 @@ class DiscountRepositoryTest extends TestCase
         $this->assertInstanceOf(DiscountCollection::class, $products);
     }
 
-    public function testIfQueryBuilderAndDoctrineIsCalled() : void
+    public function testIfQueryBuilderAndDoctrineIsCalled(): void
     {
         $connection = $this->createMock(Connection::class);
         $queryBuilder = $this->createMock(QueryBuilder::class);
@@ -50,7 +50,7 @@ class DiscountRepositoryTest extends TestCase
         $this->assertCount(2, $discounts);
     }
 
-    private function createDiscountRepositoryMock() : DiscountRepository
+    private function createDiscountRepositoryMock(): DiscountRepository
     {
         $connection = $this->createMock(Connection::class);
         $productAdapter = new DiscountAdapter(new DiscountFactory());
@@ -58,7 +58,7 @@ class DiscountRepositoryTest extends TestCase
         return new DiscountRepository($connection, $productAdapter);
     }
 
-    private function mockData() : array
+    private function mockData(): array
     {
         return [
             [

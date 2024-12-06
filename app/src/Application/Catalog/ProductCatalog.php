@@ -27,7 +27,7 @@ class ProductCatalog
         $this->productCollectionTransformer = $productCollectionTransformer;
     }
 
-    public function getProductCatalogWithBestPromotionsApplied(?ProductFilterCollection $filters = null) : array
+    public function getProductCatalogWithBestPromotionsApplied(?ProductFilterCollection $filters = null): array
     {
         $productCollection = $this->productRepository->find($filters);
         $promotionCollection = $this->discountRepository->find();

@@ -11,7 +11,7 @@ use App\Persistence\Adapter\DiscountAdapter;
 
 class DiscountAdapterTest extends TestCase
 {
-    public function testRawDatabaseDataIsConvertedToDiscount() : void
+    public function testRawDatabaseDataIsConvertedToDiscount(): void
     {
         $discountAdapter = new DiscountAdapter(new DiscountFactory());
         $rawData = [
@@ -27,7 +27,7 @@ class DiscountAdapterTest extends TestCase
         $this->assertEquals(10, $discount->discountPercent());
     }
 
-    public function testRawDatabaseDataIsConvertedToDiscountCollection() : void
+    public function testRawDatabaseDataIsConvertedToDiscountCollection(): void
     {
         $discountAdapter = new DiscountAdapter(new DiscountFactory());
         $rawData = [

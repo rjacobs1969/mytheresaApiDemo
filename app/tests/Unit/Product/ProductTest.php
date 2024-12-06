@@ -12,7 +12,7 @@ use App\Domain\Money\Currency;
 
 class ProductTest extends TestCase
 {
-    public function testCanCreateProduct() : void
+    public function testCanCreateProduct(): void
     {
         $product = $this->createProduct();
 
@@ -23,7 +23,7 @@ class ProductTest extends TestCase
         $this->assertEquals('EUR', $product->price()->currency()->isoCode());
     }
 
-    public function testCanSetDiscount() : void
+    public function testCanSetDiscount(): void
     {
         $product = $this->createProduct();
         $product->setDiscount(10);
@@ -31,7 +31,7 @@ class ProductTest extends TestCase
         $this->assertEquals(10, $product->discount());
     }
 
-    public function testCanCalculateDiscountedPrice() : void
+    public function testCanCalculateDiscountedPrice(): void
     {
         $product = $this->createProduct();
         $product->setDiscount(10);
@@ -41,7 +41,7 @@ class ProductTest extends TestCase
         $this->assertEquals('EUR', $discountedPrice->currency()->isoCode());
     }
 
-    private function createProduct() : Product
+    private function createProduct(): Product
     {
         return new Product(
             '123',

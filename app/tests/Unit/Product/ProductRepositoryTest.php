@@ -19,7 +19,7 @@ use InvalidArgumentException;
 
 class ProductRepositoryTest extends TestCase
 {
-    public function testFind() : void
+    public function testFind(): void
     {
         $productRepository = $this->createProductRepository();
         $products = $productRepository->find();
@@ -27,7 +27,7 @@ class ProductRepositoryTest extends TestCase
         $this->assertInstanceOf(ProductCollection::class, $products);
     }
 
-    public function testIfQueryBuilderAndDoctrineIsCalled() : void
+    public function testIfQueryBuilderAndDoctrineIsCalled(): void
     {
         $connection = $this->createMock(Connection::class);
         $queryBuilder = $this->createMock(QueryBuilder::class);
@@ -60,7 +60,7 @@ class ProductRepositoryTest extends TestCase
         $this->assertCount(2, $products);
     }
 
-    public function testFindWithInvalidFilter() : void
+    public function testFindWithInvalidFilter(): void
     {
         $productRepository = $this->createProductRepository();
         $filters = new ProductFilterCollection();
@@ -71,7 +71,7 @@ class ProductRepositoryTest extends TestCase
         $productRepository->find($filters);
     }
 
-    public function testSave() : void
+    public function testSave(): void
     {
         $productRepository = $this->createProductRepository();
         $product = $this->createMock(Product::class);
@@ -81,7 +81,7 @@ class ProductRepositoryTest extends TestCase
         $this->assertTrue(true);
     }
 
-    private function createProductRepository() : ProductRepository
+    private function createProductRepository(): ProductRepository
     {
         $connection = $this->createMock(Connection::class);
         $productAdapter = new ProductAdapter();
@@ -89,7 +89,7 @@ class ProductRepositoryTest extends TestCase
         return new ProductRepository($connection, $productAdapter);
     }
 
-    private function mockData() : array
+    private function mockData(): array
     {
         return [
             [

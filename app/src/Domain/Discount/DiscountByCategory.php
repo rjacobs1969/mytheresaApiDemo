@@ -6,7 +6,7 @@ namespace App\Domain\Discount;
 
 class DiscountByCategory extends Discount
 {
-    const DISCOUNT_TYPE = DiscountType::CATEGORY;
+    private const DISCOUNT_TYPE = DiscountType::CATEGORY;
 
     private string $category;
 

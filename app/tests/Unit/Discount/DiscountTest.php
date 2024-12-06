@@ -11,7 +11,7 @@ use App\Domain\Discount\DiscountType;
 
 class DiscountTest extends TestCase
 {
-    public function testCanCreateDiscountBySku() : void
+    public function testCanCreateDiscountBySku(): void
     {
         $discount = new DiscountBySku('123', 10);
         $this->assertEquals(DiscountType::SKU, $discount->discountType());
@@ -19,7 +19,7 @@ class DiscountTest extends TestCase
         $this->assertEquals(10, $discount->discountPercent());
     }
 
-    public function testCanCreateDiscountByCategory() : void
+    public function testCanCreateDiscountByCategory(): void
     {
         $discount = new DiscountByCategory('Category Name', 10);
         $this->assertEquals(DiscountType::CATEGORY, $discount->discountType());

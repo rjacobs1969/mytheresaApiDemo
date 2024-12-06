@@ -14,7 +14,7 @@ final class ProductAdapter
 {
     private const DEFAULT_CURRENCY = 'EUR';
 
-    public function convertFromDatabaseValues(array $raw) : Product
+    public function convertFromDatabaseValues(array $raw): Product
     {
         return new Product(
             $raw['sku'],
@@ -24,7 +24,7 @@ final class ProductAdapter
         );
     }
 
-    public function toCollection(array $raws) : ProductCollection
+    public function toCollection(array $raws): ProductCollection
     {
         $collection = new ProductCollection();
         foreach ($raws as $raw) {
@@ -34,7 +34,7 @@ final class ProductAdapter
         return $collection;
     }
 
-    public function toDatabaseValues(Product $product) : array
+    public function toDatabaseValues(Product $product): array
     {
         return [
             'sku'       => $product->sku(),
@@ -44,7 +44,7 @@ final class ProductAdapter
         ];
     }
 
-    public function toDatabaseKey(Product $product) : array
+    public function toDatabaseKey(Product $product): array
     {
         return ['sku' => $product->sku()];
     }
