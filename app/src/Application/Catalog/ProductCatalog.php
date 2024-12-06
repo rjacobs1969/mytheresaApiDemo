@@ -10,6 +10,7 @@ use App\Domain\Discount\DiscountCollection;
 use App\Persistence\Repository\DiscountRepository;
 use App\Persistence\Repository\ProductRepository;
 use App\UserInterface\Transformer\ProductCollectionTransformer;
+
 class ProductCatalog
 {
     private ProductRepository $productRepository;
@@ -19,8 +20,8 @@ class ProductCatalog
     public function __construct(
         ProductRepository $productRepository,
         DiscountRepository $discountRepository,
-        ProductCollectionTransformer $productCollectionTransformer)
-    {
+        ProductCollectionTransformer $productCollectionTransformer
+    ) {
         $this->productRepository = $productRepository;
         $this->discountRepository = $discountRepository;
         $this->productCollectionTransformer = $productCollectionTransformer;

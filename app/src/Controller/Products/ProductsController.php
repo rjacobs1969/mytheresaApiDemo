@@ -42,8 +42,7 @@ class ProductsController extends AbstractController
         Request $request,
         ProductCatalog $productCatalog,
         ProductListRequestAdapter $requestAdapter
-        ): JsonResponse
-    {
+    ): JsonResponse {
         try {
             $response = $productCatalog->getProductCatalogWithBestPromotionsApplied(
                 $requestAdapter->createProductListFilterFromRequest($request)

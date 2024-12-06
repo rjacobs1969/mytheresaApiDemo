@@ -18,7 +18,7 @@ class Currency
         if (!preg_match('/^[A-Z]{3}$/', $anIsoCode)) {
             throw new \InvalidArgumentException();
         }
-    $this->isoCode = $anIsoCode;
+        $this->isoCode = $anIsoCode;
     }
 
     public function isoCode()
@@ -30,4 +30,4 @@ class Currency
     {
         return $this->isoCode() === $aCurrency->isoCode();
     }
- }
+}
